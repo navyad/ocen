@@ -38,6 +38,19 @@ def consent_handle_request(request):
 
 
 
+@csrf_exempt
+@require_http_methods(["POST"])
+def consent_journey_notify(request):
+    """
+    Lender handling journey notify 
+    """
+    data = request.POST 
+    print("called: consent_journey_notify")
+    json_response = {"error": "", "trackId": 7843, "datetime": datetime.now()}
+    print(f"response: {json_response}")
+    return JsonResponse(json_response)
+
+
 
 
 
