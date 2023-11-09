@@ -59,3 +59,12 @@ def document_response(request):
     data = to_json(request.body) 
     print(data)
     return JsonResponse(data)
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def set_offer_response(request):
+    print("called: set_offer_response")
+    data = to_json(request.body) 
+    print(data)
+    return JsonResponse(data)

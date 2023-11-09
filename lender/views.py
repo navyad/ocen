@@ -9,6 +9,7 @@ from ocen.utils import to_json
 from lender.tasks import (
     process_loan_application, process_consent_handle,
     process_generate_offer, process_document_request,
+    process_set_offer_request,
 )
 
 
@@ -89,6 +90,20 @@ def document_request(request):
     data = request.POST
     print("called: document_request")
     process_document_request.apply_async(data=data, countdown=3)
+    json_response = {"error": "", "trackId": 7843, "datetime": datetime.now()}
+    print(f"response: {json_response}")
+    return JsonResponse(json_response)
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def set_offer_request(request):
+    """
+    Lender handling set offer request 
+    """
+    data = request.POST
+    print("called: set_offer_request")
+    process_set_offer_request.apply_async(data=data, countdown=3)
     json_response = {"error": "", "trackId": 7843, "datetime": datetime.now()}
     print(f"response: {json_response}")
     return JsonResponse(json_response)

@@ -6,6 +6,7 @@ from lender.payloads.create_loan_applications_response import payload as payload
 from lender.payloads.consent_handle_response import payload as payload_consent
 from lender.payloads.generate_offer_response import payload as payload_generate
 from lender.payloads.document_response import payload as payload_document
+from lender.payloads.set_offer_response import payload as payload_set_offer
 
 LA_URL = "http://localhost:8000"
 HEADERS = {'Content-Type': 'application/json', 'Accept': 'application/json'}
@@ -56,5 +57,16 @@ def process_document_request(data):
     """
     print("called: process_document_request")
     url = f"{LA_URL}/v4.0.0alpha/offers/sendAdditionalDocumentsResponse"
+    make_request(url=url, data=payload_document) 
+    print(f"response: {url}")
+
+
+@shared_task(bind=True)
+def process_set_offer_request(data):
+    """
+    Lender async processing
+    """
+    print("called: process_document_request")
+    url = f"{LA_URL}/v4.0.0alpha/offers/setOffersResponse"
     make_request(url=url, data=payload_document) 
     print(f"response: {url}")
