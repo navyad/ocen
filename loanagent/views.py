@@ -50,3 +50,12 @@ def generate_offer_response(request):
     data = to_json(request.body) 
     print(data)
     return JsonResponse(data)
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def document_response(request):
+    print("called: document_response")
+    data = to_json(request.body) 
+    print(data)
+    return JsonResponse(data)

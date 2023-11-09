@@ -31,7 +31,9 @@ urlpatterns = [
     path('v4.0.0alpha/consent/statusRequest', loanagent_views.consent_status_request), 
     path('v4.0.0alpha/consent/statusResponse', lender_views.consent_status_response), 
 
-    
     path('v4.0.0alpha/offers/generateoffersRequest', lender_views.generate_offer_request), 
     path('v4.0.0alpha/offers/generateoffersResponse', loanagent_views.generate_offer_response), 
+
+    path('v4.0.0alpha/offers/sendAdditionalDocumentsRequest', lender_views.document_request), 
+    path('v4.0.0alpha/offers/sendAdditionalDocumentsResponse', loanagent_views.document_response), 
 ]
