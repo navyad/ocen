@@ -34,6 +34,3 @@ def process_consent_handle(data):
     url = f"{LA_URL}/v4.0.0alpha/consent/consentHandleResponse"
     make_request(url=url, data=payload_consent) 
     print(f"response: {url}")
-
-
-

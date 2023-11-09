@@ -5,9 +5,11 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 
+from ocen.utils import to_json
 from lender.tasks import (
     process_loan_application, process_consent_handle
 )
+
 
 @csrf_exempt
 @require_http_methods(["POST"])
@@ -51,6 +53,13 @@ def consent_journey_notify(request):
     return JsonResponse(json_response)
 
 
-
-
-
+@csrf_exempt
+@require_http_methods(["POST"])
+def consent_status_response(request):
+    """
+    Invoked by loanagent in async manner 
+    """
+    print("called: consent_status_response")
+    data = to_json(request.body)
+    print(data)
+    return JsonResponse(data)

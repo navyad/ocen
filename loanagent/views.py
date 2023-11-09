@@ -1,19 +1,17 @@
+"""
+This is a loan agent API handler
+These API endpoints have been invoked from lender in async manner
+"""
 import json
+from datetime import datetime
 
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 
-"""
-This is a loan agent API handler
-These API endpoints have been invoked from lender in async manner
-"""
+from loanagent.tasks import process_consent_status
+from ocen.utils import to_json
 
-
-def to_json(byte_data):
-    json_string = byte_data.decode('utf-8')
-    return json.loads(json_string)
-   
 
 @csrf_exempt
 @require_http_methods(["POST"])
@@ -32,3 +30,13 @@ def consent_handle_response(request):
     print(data)
     return JsonResponse(data)
 
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def consent_status_request(request):
+    print("called: consent_status_request")
+    data = request.POST 
+    process_consent_status.apply_async(data=data, countdown=3)
+    json_response = {"error": "", "trackId": 7843, "datetime": datetime.now()}
+    print(f"response: {json_response}")
+    return JsonResponse(json_response)
