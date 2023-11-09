@@ -7,7 +7,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 from ocen.utils import to_json
 from lender.tasks import (
-    process_loan_application, process_consent_handle
+    process_loan_application, process_consent_handle,
+    process_generate_offer
 )
 
 
@@ -63,3 +64,17 @@ def consent_status_response(request):
     data = to_json(request.body)
     print(data)
     return JsonResponse(data)
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def generate_offer_request(request):
+    """
+    Lender handling generate offer request 
+    """
+    data = request.POST 
+    print("called: generate_offer_request")
+    process_generate_offer.apply_async(data=data, countdown=3)
+    json_response = {"error": "", "trackId": 7843, "datetime": datetime.now()}
+    print(f"response: {json_response}")
+    return JsonResponse(json_response)

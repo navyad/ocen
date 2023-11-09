@@ -40,3 +40,13 @@ def consent_status_request(request):
     json_response = {"error": "", "trackId": 7843, "datetime": datetime.now()}
     print(f"response: {json_response}")
     return JsonResponse(json_response)
+
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def generate_offer_response(request):
+    print("called:generate_offer_response")
+    data = to_json(request.body) 
+    print(data)
+    return JsonResponse(data)
