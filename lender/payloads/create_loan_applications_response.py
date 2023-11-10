@@ -2,7 +2,7 @@ import json
 
 payload = json.dumps({
   "metadata": {
-    "version": "string",
+    "version": "test",
     "originatorOrgId": "string",
     "originatorParticipantId": "string",
     "timestamp": "string",
@@ -14,8 +14,8 @@ payload = json.dumps({
     "responseDetail": "string"
   },
   "productData": {
-    "productId": "string",
-    "productNetworkId": "string"
+    "productId": "BNPL23",
+    "productNetworkId": "NTX_BPNL"
   },
   "loanApplications": [
     {

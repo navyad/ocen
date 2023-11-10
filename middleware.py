@@ -16,16 +16,20 @@ class CheckRequiredAttributesMiddleware:
 
             if not product_id or not product_network_id:
                 response_data = {'error': 'productId and productNetworkId are required'}
+                print(response_data)
                 return JsonResponse(response_data, status=400)
             
             from ocen.utils import Constansts
             if product_id != Constansts.PRODUCT_ID or product_network_id != Constansts.PRODUCT_NETWORK_ID:
                 error_message = 'Invalid values for productId or productNetworkId.'
+                print(error_message)
                 return JsonResponse({'error': error_message}, status=400)
             
-            request_id = post_data.get("requestId")
+            request_id = post_data.get("metadata").get("requestId")
             if not request_id:
-                return JsonResponse({'error': "requestId is required"}, status=400)
+                error_message = {'error': "requestId is required"}
+                print(error_message)
+                return JsonResponse(error_message, status=400)
 
 
         response = self.get_response(request)

@@ -15,8 +15,8 @@ payload = json.dumps({
     "responseDetail": "string"
   },
   "productData": {
-    "productId": "string",
-    "productNetworkId": "string"
+    "productId": "BNPL23",
+    "productNetworkId": "NTX_BPNL"
   },
   "loanApplications": [
     {

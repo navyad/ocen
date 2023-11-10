@@ -10,8 +10,8 @@ payload = json.dumps({
     "requestId": "string"
   },
   "productData": {
-    "productId": "string",
-    "productNetworkId": "string"
+    "productId": "BNPL23",
+    "productNetworkId": "NTX_BPNL"
   },
   "loanApplicationIds": [
     "string"

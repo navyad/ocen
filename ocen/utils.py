@@ -11,3 +11,9 @@ class Constansts:
     LENDER_B_BASE_URL = "http://localhost:8002"
     PRODUCT_ID = "BNPL23"
     PRODUCT_NETWORK_ID = "NTX_BPNL" 
+
+
+def update_requst_id(payload, request_id):
+    payload_dict = json.loads(payload)
+    payload_dict["metadata"]["requestId"] = request_id 
+    return json.dumps(payload_dict)
