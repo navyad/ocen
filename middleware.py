@@ -19,8 +19,8 @@ class CheckRequiredAttributesMiddleware:
                 print(response_data)
                 return JsonResponse(response_data, status=400)
             
-            from ocen.utils import Constansts
-            if product_id != Constansts.PRODUCT_ID or product_network_id != Constansts.PRODUCT_NETWORK_ID:
+            from ocen.utils import Constants
+            if product_id != Constants.PRODUCT_ID or product_network_id != Constants.PRODUCT_NETWORK_ID:
                 error_message = 'Invalid values for productId or productNetworkId.'
                 print(error_message)
                 return JsonResponse({'error': error_message}, status=400)
