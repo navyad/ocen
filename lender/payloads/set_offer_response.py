@@ -1,7 +1,4 @@
-import json
-
-
-payload = json.dumps({
+payload = {
   "metadata": {
     "version": "string",
     "originatorOrgId": "string",
@@ -21,4 +18,4 @@ payload = json.dumps({
   "loanApplicationId": "string",
   "loanApplicationStatus": "CREATED",
   "extensibleData": {}
-})
+}

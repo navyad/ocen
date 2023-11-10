@@ -1,6 +1,4 @@
-import json
-
-payload = json.dumps({
+payload = {
   "metadata": {
     "version": "test",
     "originatorOrgId": "string",
@@ -306,6 +304,6 @@ payload = json.dumps({
       }
     }
   ]
-})
+}
 
 
