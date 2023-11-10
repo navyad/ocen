@@ -1,5 +1,5 @@
 # ocen
-OCEN Integration for Loan Loan Journey [APIs](https://ocen.dev/docs/loan_journey/auction_and_offer/)
+OCEN Integration for Loan Journey [APIs](https://ocen.dev/docs/loan_journey/auction_and_offer/)
 
 
 ### Setup Instructions
