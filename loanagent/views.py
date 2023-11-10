@@ -35,8 +35,8 @@ def consent_handle_response(request):
 @require_http_methods(["POST"])
 def consent_status_request(request):
     print("called: consent_status_request")
-    data = request.POST 
-    process_consent_status.apply_async(data=data, countdown=3)
+    data = to_json(request.body) 
+    process_consent_status.apply_async(args=[data], countdown=3)
     json_response = {"error": "", "trackId": 7843, "datetime": datetime.now()}
     print(f"response: {json_response}")
     return JsonResponse(json_response)

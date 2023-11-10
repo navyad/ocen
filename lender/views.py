@@ -19,9 +19,9 @@ def create_loan_application(request):
     """
     Lender handling loan request
     """
-    data = request.POST 
+    data = to_json(request.body) 
     print("called: create_loan_application")
-    process_loan_application.apply_async(data=data, countdown=3)
+    process_loan_application.apply_async(args=[data], countdown=3)
     json_response = {"error": "", "trackId": 2343, "datetime": datetime.now()}
     print(f"response: {json_response}")
     return JsonResponse(json_response)
@@ -33,9 +33,9 @@ def consent_handle_request(request):
     """
     Lender handling consent request 
     """
-    data = request.POST 
+    data = to_json(request.body) 
     print("called: consent_handle_request")
-    process_consent_handle.apply_async(data=data, countdown=3)
+    process_consent_handle.apply_async(args=[data], countdown=3)
     json_response = {"error": "", "trackId": 7843, "datetime": datetime.now()}
     print(f"response: {json_response}")
     return JsonResponse(json_response)
@@ -48,7 +48,7 @@ def consent_journey_notify(request):
     """
     Lender handling journey notify 
     """
-    data = request.POST 
+    data = to_json(request.body) 
     print("called: consent_journey_notify")
     json_response = {"error": "", "trackId": 7843, "datetime": datetime.now()}
     print(f"response: {json_response}")
@@ -73,9 +73,9 @@ def generate_offer_request(request):
     """
     Lender handling generate offer request 
     """
-    data = request.POST 
+    data = to_json(request.body)
     print("called: generate_offer_request")
-    process_generate_offer.apply_async(data=data, countdown=3)
+    process_generate_offer.apply_async(args=[data], countdown=3)
     json_response = {"error": "", "trackId": 7843, "datetime": datetime.now()}
     print(f"response: {json_response}")
     return JsonResponse(json_response)
@@ -87,9 +87,9 @@ def document_request(request):
     """
     Lender handling document_request 
     """
-    data = request.POST
+    data = to_json(request.body)
     print("called: document_request")
-    process_document_request.apply_async(data=data, countdown=3)
+    process_document_request.apply_async(args=[data], countdown=3)
     json_response = {"error": "", "trackId": 7843, "datetime": datetime.now()}
     print(f"response: {json_response}")
     return JsonResponse(json_response)
@@ -101,9 +101,9 @@ def set_offer_request(request):
     """
     Lender handling set offer request 
     """
-    data = request.POST
+    data = to_json(request.body)
     print("called: set_offer_request")
-    process_set_offer_request.apply_async(data=data, countdown=3)
+    process_set_offer_request.apply_async(args=[data], countdown=3)
     json_response = {"error": "", "trackId": 7843, "datetime": datetime.now()}
     print(f"response: {json_response}")
     return JsonResponse(json_response)
